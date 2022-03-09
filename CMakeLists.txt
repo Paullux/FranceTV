@@ -37,6 +37,15 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        framelesswindow/framelesswindow.cpp
+        framelesswindow/framelesswindow.h
+        framelesswindow/framelesswindow.ui
+        framelesswindow/windowdragger.cpp
+        framelesswindow/windowdragger.h
+        DarkStyle.cpp
+        DarkStyle.h
+        darkstyle.qrc
+        framelesswindow.qrc
         ${TS_FILES}
 )
 

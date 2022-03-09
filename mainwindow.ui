@@ -14,9 +14,13 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #000; color: #fff</string>
+   <string notr="true">background-color: #121212; color: #999999;</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: #121212; color: #999999;</string>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -26,7 +30,13 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #121212; color: #999999;</string>
+   </property>
    <widget class="QMenu" name="menuFichier">
+    <property name="styleSheet">
+     <string notr="true">background-color: #121212; color: #999999;</string>
+    </property>
     <property name="title">
      <string>Fichier</string>
     </property>
@@ -35,7 +45,11 @@
    </widget>
    <addaction name="menuFichier"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">background-color: #121212; color: #999999;</string>
+   </property>
+  </widget>
   <action name="actionAccueil">
    <property name="text">
     <string>Accueil</string>
