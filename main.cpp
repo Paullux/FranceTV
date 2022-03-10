@@ -39,6 +39,9 @@ int main(int argc, char *argv[])
     // create our mainwindow instance
     MainWindow *w = new MainWindow;
 
+    QObject::connect(&framelessWindow, &FramelessWindow::Accueil, w, &MainWindow::Accueil);
+    QObject::connect(&framelessWindow, &FramelessWindow::SliderZoomValue, w, &MainWindow::changeZoomScaled);
+
     // add the mainwindow to our custom frameless window
     framelessWindow.setContent(w);
     framelessWindow.showMaximized();

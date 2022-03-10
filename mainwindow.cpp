@@ -181,3 +181,8 @@ void MainWindow::Accueil()
 {
     view->load(AccueilUrl);
 }
+
+void MainWindow::changeZoomScaled(int value)
+{
+    view->setZoomFactor(value/10);
+}

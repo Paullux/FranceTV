@@ -40,6 +40,8 @@ private:
 public slots:
     void Quitter();
     void Accueil();
+    void changeZoomScaled(int value);
+
 };
 
 /*

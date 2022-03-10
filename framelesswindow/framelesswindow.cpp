@@ -67,7 +67,11 @@ FramelessWindow::FramelessWindow(QWidget *parent)
 
   HomeButton = ui->HomeButton;
   connect(HomeButton, &QPushButton::clicked,
-                   this, [](bool){ &MainWindow::Accueil; });
+                   this, &FramelessWindow::Accueil);
+
+  SliderZoom = ui->SliderZoom;
+  connect(SliderZoom, &QSlider::valueChanged,
+          this, &FramelessWindow::SliderZoomValue);
 
 }
 
@@ -472,8 +476,3 @@ void FramelessWindow::Quitter()
 {
     qApp->quit();
 }
-
-/**void FramelessWindow::Accueil()
-{
-    MainWindow().view->load(QUrl("https://www.france.tv/"));
-}**/

@@ -25,10 +25,12 @@ class FramelessWindow;
 class FramelessWindow : public QWidget {
   Q_OBJECT
 
- public:
+
+public:
   explicit FramelessWindow(QWidget *parent = Q_NULLPTR);
   virtual ~FramelessWindow();
   void setContent(QWidget *w);
+  int value;
 
  private:
   bool leftBorderHit(const QPoint &pos);
@@ -48,7 +50,6 @@ class FramelessWindow : public QWidget {
   void on_maximizeButton_clicked();
   void on_closeButton_clicked();
   void on_windowTitlebar_doubleClicked();
-  //void Accueil();
   void Quitter();
 
  protected:
@@ -71,6 +72,10 @@ class FramelessWindow : public QWidget {
   QPushButton *HomeButton;
   QPushButton *QuitButton;
   QSlider *SliderZoom;
+
+  signals:
+    void Accueil();
+    void SliderZoomValue(int value);
 };
 
 #endif  // FRAMELESSWINDOW_H
