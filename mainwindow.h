@@ -24,12 +24,12 @@ public:
     ~MainWindow();
     QAction *actionAccueil;
     QAction *actionQuitter;
+    QUrl AccueilUrl = QUrl("https://www.france.tv/");
+    QWebEngineView *view;
 
 private:
     Ui::MainWindow *ui;
-    QWebEngineView *view;
     QWebEngineSettings *settings;
-    QUrl AccueilUrl = QUrl("https://www.france.tv/");
     //QWebEngineProfile *profile;
     QPushButton *closeButton;
     QPushButton *homeButton;
@@ -37,9 +37,9 @@ private:
     QLabel *scaleLabel;
     QGridLayout *myWebView;
 
-private slots:
-    void Accueil();
+public slots:
     void Quitter();
+    void Accueil();
 };
 
 /*

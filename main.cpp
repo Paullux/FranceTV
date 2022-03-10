@@ -43,7 +43,5 @@ int main(int argc, char *argv[])
     framelessWindow.setContent(w);
     framelessWindow.showMaximized();
 
-    //w.setWindowFlags(Qt::FramelessWindowHint);
-    //w.showMaximized();
     return a.exec();
 }

@@ -79,7 +79,7 @@
         <property name="styleSheet">
          <string notr="true">#windowTitlebar{border: 0px none palette(base); border-top-left-radius:5px; border-top-right-radius:5px; background-color:#121212; height:20px;}</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0,0,0,0">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,0,0,0,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -155,6 +155,79 @@
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="HomeButton">
+           <property name="styleSheet">
+            <string notr="true">color:rgb(153,153,153);</string>
+           </property>
+           <property name="text">
+            <string>Accueil</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="QuitButton">
+           <property name="styleSheet">
+            <string notr="true">color:rgb(153,153,153);</string>
+           </property>
+           <property name="text">
+            <string>Quitter</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="TexteSliderZoom">
+             <property name="styleSheet">
+              <string notr="true">color:rgb(153,153,153);</string>
+             </property>
+             <property name="text">
+              <string>Niveau de Zoom</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="SliderZoom">
+             <property name="styleSheet">
+              <string notr="true">color:rgb(153,153,153);</string>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QToolButton" name="minimizeButton">

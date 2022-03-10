@@ -140,13 +140,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     statusBar()->setSizeGripEnabled(true);
 
-    actionQuitter = ui->actionQuitter;
-    connect(actionQuitter, &QAction::triggered,
-            this, &MainWindow::Quitter);
+    //actionQuitter = ui->actionQuitter;
+    //connect(actionQuitter, &QAction::triggered,
+    //        this, &MainWindow::Quitter);
 
-    actionAccueil = ui->actionAccueil;
-    connect(actionAccueil, &QAction::triggered,
-            this, &MainWindow::Accueil);
+    //actionAccueil = ui->actionAccueil;
+    //connect(actionAccueil, &QAction::triggered,
+    //        this, &MainWindow::Accueil);
 
     QString home=QDir::homePath();
 
@@ -164,8 +164,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     view->load(AccueilUrl);
     view->setZoomFactor(1.5);
-    //myWebView = ui->gridLayout;
-    //myWebView->addWidget(view);
     setCentralWidget(view);
 }
 

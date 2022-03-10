@@ -21,30 +21,6 @@
     <string notr="true">background-color: #121212; color: #999999;</string>
    </property>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #121212; color: #999999;</string>
-   </property>
-   <widget class="QMenu" name="menuFichier">
-    <property name="styleSheet">
-     <string notr="true">background-color: #121212; color: #999999;</string>
-    </property>
-    <property name="title">
-     <string>Fichier</string>
-    </property>
-    <addaction name="actionAccueil"/>
-    <addaction name="actionQuitter"/>
-   </widget>
-   <addaction name="menuFichier"/>
-  </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="styleSheet">
     <string notr="true">background-color: #121212; color: #999999;</string>

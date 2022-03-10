@@ -15,6 +15,8 @@
 #define FRAMELESSWINDOW_H
 
 #include <QWidget>
+#include <QPushButton>
+#include <QSlider>
 
 namespace Ui {
 class FramelessWindow;
@@ -46,6 +48,8 @@ class FramelessWindow : public QWidget {
   void on_maximizeButton_clicked();
   void on_closeButton_clicked();
   void on_windowTitlebar_doubleClicked();
+  //void Accueil();
+  void Quitter();
 
  protected:
   virtual void changeEvent(QEvent *event);
@@ -64,6 +68,9 @@ class FramelessWindow : public QWidget {
   bool m_bDragLeft;
   bool m_bDragRight;
   bool m_bDragBottom;
+  QPushButton *HomeButton;
+  QPushButton *QuitButton;
+  QSlider *SliderZoom;
 };
 
 #endif  // FRAMELESSWINDOW_H

@@ -18,6 +18,7 @@
 #include <QScreen>
 
 #include "ui_framelesswindow.h"
+#include "mainwindow.h"
 
 FramelessWindow::FramelessWindow(QWidget *parent)
     : QWidget(parent),
@@ -59,6 +60,15 @@ FramelessWindow::FramelessWindow(QWidget *parent)
 
   // important to watch mouse move from all child widgets
   QApplication::instance()->installEventFilter(this);
+
+  QuitButton = ui->QuitButton;
+  connect(QuitButton, &QPushButton::clicked,
+                   this, &FramelessWindow::Quitter);
+
+  HomeButton = ui->HomeButton;
+  connect(HomeButton, &QPushButton::clicked,
+                   this, [](bool){ &MainWindow::Accueil; });
+
 }
 
 FramelessWindow::~FramelessWindow() { delete ui; }
@@ -262,6 +272,7 @@ void FramelessWindow::checkBorderDragging(QMouseEvent *event) {
           globalMousePos.y() - (m_StartGeometry.y() + m_StartGeometry.height());
       int newh = m_StartGeometry.height() + diff;
       diff = globalMousePos.x() - m_StartGeometry.x();
+      diff = globalMousePos.x() - m_StartGeometry.x();
       int newx = m_StartGeometry.x() + diff;
       if (newh > 0 && newx > 0) {
         QRect newg = m_StartGeometry;
@@ -456,3 +467,13 @@ bool FramelessWindow::eventFilter(QObject *obj, QEvent *event) {
 
   return QWidget::eventFilter(obj, event);
 }
+
+void FramelessWindow::Quitter()
+{
+    qApp->quit();
+}
+
+/**void FramelessWindow::Accueil()
+{
+    MainWindow().view->load(QUrl("https://www.france.tv/"));
+}**/
