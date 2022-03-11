@@ -5,10 +5,13 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QWidget>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon("./images/france-tv.ico"));
+    QtWebView::initialize();
 
     // style our application with custom dark style
     QApplication::setStyle(new DarkStyle);

@@ -140,14 +140,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     statusBar()->setSizeGripEnabled(true);
 
-    //actionQuitter = ui->actionQuitter;
-    //connect(actionQuitter, &QAction::triggered,
-    //        this, &MainWindow::Quitter);
-
-    //actionAccueil = ui->actionAccueil;
-    //connect(actionAccueil, &QAction::triggered,
-    //        this, &MainWindow::Accueil);
-
     QString home=QDir::homePath();
 
     QWebEngineProfile::defaultProfile()->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
@@ -161,7 +153,9 @@ MainWindow::MainWindow(QWidget *parent)
     settings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    settings->setAttribute(QWebEngineSettings::WebGLEnabled, true);
 
+    view->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
     view->load(AccueilUrl);
     view->setZoomFactor(1.5);
     setCentralWidget(view);

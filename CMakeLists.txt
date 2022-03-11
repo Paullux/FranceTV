@@ -46,8 +46,16 @@ set(PROJECT_SOURCES
         DarkStyle.h
         darkstyle.qrc
         framelesswindow.qrc
+        qt5app.rc
         ${TS_FILES}
 )
+
+if (WIN32)
+    qt5_add_resources(qt5app.rc)
+endif()
+
+set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/qt5app.rc")
+add_executable(qt5app main.cpp ${APP_ICON_RESOURCE_WINDOWS})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(FranceTV
