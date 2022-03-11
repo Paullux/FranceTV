@@ -18,9 +18,10 @@ int main(int argc, char *argv[])
 
     // create frameless window (and set windowState or title)
     FramelessWindow framelessWindow;
+
     //framelessWindow.setWindowState(Qt::WindowFullScreen);
     //framelessWindow.setWindowTitle("test title");
-    framelessWindow.setWindowIcon(a.style()->standardIcon(QStyle::SP_DesktopIcon));
+    framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("https://github.com/Paullux/");
     QCoreApplication::setApplicationName("FranceTV");
 
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4 --enable-logging --log-level=3 --widevine-path=\"I:/FranceTV/cmake-build-release/widevinecdm.dll\"");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4");// --widevine-path=\"I:/FranceTV/cmake-build-release/widevinecdm.dll\"");
     //qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--widevine-path=\"C:/Program Files/Google/Chrome/Application/99.0.4844.51/WidevineCdm/_platform_specific/win_x64/widevinecdm.dll\"");
 
     // create our mainwindow instance

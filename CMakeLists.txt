@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(FranceTV VERSION 0.1 LANGUAGES CXX)
+
+
+if(WIN32)
+    project(FranceTV VERSION 0.1)
+else()
+    project(FranceTV VERSION 0.1 LANGUAGES CXX)
+endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -27,8 +33,8 @@ set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64")
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt5 COMPONENTS Widgets Core WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
+find_package(QT NAMES Qt5 COMPONENTS Widgets Core Gui WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Gui WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
 
 set(TS_FILES FranceTV_fr_FR.ts)
 
@@ -54,6 +60,12 @@ if (WIN32)
     qt5_add_resources(qt5app.rc)
 endif()
 
+if(WIN32)
+    SET(GUI_TYPE WIN32)
+else()
+    SET(GUI_TYPE )
+endif()
+
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/qt5app.rc")
 add_executable(qt5app main.cpp ${APP_ICON_RESOURCE_WINDOWS})
 
@@ -71,6 +83,7 @@ else()
         )
     else()
         add_executable(FranceTV
+            ${GUI_TYPE}
             ${PROJECT_SOURCES}
         )
     endif()

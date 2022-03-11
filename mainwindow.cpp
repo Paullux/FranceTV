@@ -178,5 +178,6 @@ void MainWindow::Accueil()
 
 void MainWindow::changeZoomScaled(int value)
 {
-    view->setZoomFactor(value/10);
+    float f = value;
+    view->setZoomFactor(f/10);
 }
