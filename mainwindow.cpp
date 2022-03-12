@@ -148,6 +148,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     view = new QWebEngineView(this);
 
+    view->page()->profile()->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.6 Chrome/87.0.4280.144 Safari/537.36");
     settings = view->page()->settings();
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
