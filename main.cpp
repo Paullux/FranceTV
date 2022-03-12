@@ -26,14 +26,14 @@ int main(int argc, char *argv[])
 
     //framelessWindow.setWindowState(Qt::WindowFullScreen);
     //framelessWindow.setWindowTitle("test title");
-    framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
-/**#ifdef __linux__
-    framelessWindow.setWindowIcon(QIcon(":/images/france-tv.svg"));
+    //framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
+#ifdef __linux__
+    framelessWindow.setWindowIcon(QIcon(":/images/france-tv.ico"));
 #elif _WIN32
     framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
 #elif __APPLE__
     framelessWindow.setWindowIcon(QIcon("../images/france-tv.icns"));
-#endif**/
+#endif
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

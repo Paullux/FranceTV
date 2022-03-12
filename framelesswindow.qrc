@@ -5,6 +5,8 @@
         <file>images/icon_window_maximize.png</file>
         <file>images/icon_window_close.png</file>
         <file>images/france-tv.svg</file>
+        <file>images/france-tv.png</file>
+        <file>images/france-tv.ico</file>
         <file>FranceTV.desktop</file>
     </qresource>
 </RCC>
