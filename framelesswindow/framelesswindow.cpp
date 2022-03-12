@@ -67,11 +67,11 @@ FramelessWindow::FramelessWindow(QWidget *parent)
 
   HomeButton = ui->HomeButton;
   connect(HomeButton, &QPushButton::clicked,
-                   this, &FramelessWindow::Accueil);
+                   this, &FramelessWindow::accueil);
 
   SliderZoom = ui->SliderZoom;
   connect(SliderZoom, &QSlider::valueChanged,
-          this, &FramelessWindow::SliderZoomValue);
+          this, &FramelessWindow::sliderZoomValue);
 
 }
 

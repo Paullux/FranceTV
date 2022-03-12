@@ -74,8 +74,8 @@ public:
   QSlider *SliderZoom;
 
   signals:
-    void Accueil();
-    void SliderZoomValue(int value);
+    void accueil();
+    void sliderZoomValue(int value);
 };
 
 #endif  // FRAMELESSWINDOW_H

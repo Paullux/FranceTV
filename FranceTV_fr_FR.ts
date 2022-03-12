@@ -4,10 +4,14 @@
 <context>
     <name>FramelessWindow</name>
     <message>
-        <location filename="framelesswindow/framelesswindow.ui" line="178"/>
         <location filename="cmake-build-debug/FranceTV_autogen/include/ui_framelesswindow.h" line="269"/>
-        <location filename="cmake-build-release/FranceTV_autogen/include/ui_framelesswindow.h" line="269"/>
         <source>Accueil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framelesswindow/framelesswindow.ui" line="178"/>
+        <location filename="cmake-build-release/FranceTV_autogen/include/ui_framelesswindow.h" line="269"/>
+        <source>accueil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -43,8 +47,12 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="31"/>
-        <location filename="cmake-build-debug/FranceTV_autogen/include/ui_mainwindow.h" line="56"/>
         <location filename="cmake-build-release/FranceTV_autogen/include/ui_mainwindow.h" line="56"/>
+        <source>accueil</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cmake-build-debug/FranceTV_autogen/include/ui_mainwindow.h" line="56"/>
         <source>Accueil</source>
         <translation type="unfinished"></translation>
     </message>

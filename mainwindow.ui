@@ -28,7 +28,7 @@
   </widget>
   <action name="actionAccueil">
    <property name="text">
-    <string>Accueil</string>
+    <string>accueil</string>
    </property>
   </action>
   <action name="actionQuitter">

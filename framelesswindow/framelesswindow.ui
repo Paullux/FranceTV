@@ -175,7 +175,7 @@
             <string notr="true">color:rgb(153,153,153);background-color:#121212;</string>
            </property>
            <property name="text">
-            <string>Accueil</string>
+            <string>accueil</string>
            </property>
           </widget>
          </item>
