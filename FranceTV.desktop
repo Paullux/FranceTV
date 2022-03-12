@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=FranceTV
+Comment=FranceTV.
+Exec=francetv
+Icon=france-tv
+Categories=Video;

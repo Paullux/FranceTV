@@ -25,23 +25,17 @@ public:
     QAction *actionAccueil;
     QAction *actionQuitter;
     QUrl AccueilUrl = QUrl("https://www.france.tv/");
+    //QUrl AccueilUrl = QUrl("https://www.youtube.com/");
     QWebEngineView *view;
 
 private:
     Ui::MainWindow *ui;
     QWebEngineSettings *settings;
-    //QWebEngineProfile *profile;
-    QPushButton *closeButton;
-    QPushButton *homeButton;
-    QLabel *titleLabel;
-    QLabel *scaleLabel;
-    QGridLayout *myWebView;
 
 public slots:
-    void Quitter();
-    void Accueil();
+    void accueil();
     void changeZoomScaled(int value);
-
+    void featurePermissionRequested(const QUrl & securityOrigin, QWebEnginePage::Feature f);
 };
 
 /*

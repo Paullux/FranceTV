@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
+    <width>960</width>
     <height>398</height>
    </rect>
   </property>
@@ -79,7 +79,7 @@
         <property name="styleSheet">
          <string notr="true">#windowTitlebar{border: 0px none palette(base); border-top-left-radius:5px; border-top-right-radius:5px; background-color:#121212; height:20px;}</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,0,0,0,0,0">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -175,7 +175,7 @@
             <string notr="true">color:rgb(153,153,153);background-color:#121212;</string>
            </property>
            <property name="text">
-            <string>Accueil</string>
+            <string>accueil</string>
            </property>
           </widget>
          </item>
@@ -239,15 +239,52 @@
           </spacer>
          </item>
          <item>
-          <widget class="QToolButton" name="minimizeButton">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">#minimizeButton{
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="1" column="0">
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="0">
+                <widget class="QToolButton" name="minimizeButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#minimizeButton{
   background-color:#121212;
   border:none;
   width:16px;
@@ -261,39 +298,34 @@
 #minimizeButton:pressed{
   background-color:#121212;
 }</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="restoreButton">
-           <property name="styleSheet">
-            <string notr="true">#restoreButton{
-  background-color:#121212;
-  border:none;
-  width:16px;
-  height:16px;
-  padding:4px;
-  image:url(:/images/icon_window_restore.png);
-}
-#restoreButton:hover{
-  background-color:palette(alternate-base);
-}
-#restoreButton:pressed{
-  background-color:#121212;
-}</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="maximizeButton">
-           <property name="styleSheet">
-            <string notr="true">#maximizeButton{
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QToolButton" name="maximizeButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#maximizeButton{
   background-color:#121212;
   border:none;
   width:16px;
@@ -307,22 +339,93 @@
 ##maximizeButton:pressed{
   background-color:#121212;
 }</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="closeButton">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">#closeButton{
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QToolButton" name="restoreButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#restoreButton{
+  background-color:#121212;
+  border:none;
+  width:16px;
+  height:16px;
+  padding:4px;
+  image:url(:/images/icon_window_restore.png);
+}
+#restoreButton:hover{
+  background-color:palette(alternate-base);
+}
+#restoreButton:pressed{
+  background-color:#121212;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QToolButton" name="closeButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>91</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#closeButton{
   background-color:#121212;
   border:none;
   width:16px;
@@ -337,8 +440,20 @@
 ##closeButton:pressed{
   background-color:#121212;
 }</string>
-           </property>
-          </widget>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>24</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -370,6 +485,17 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_7"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
         </layout>
        </widget>
       </item>
@@ -383,7 +509,7 @@
   <customwidget>
    <class>WindowDragger</class>
    <extends>QWidget</extends>
-   <header>windowdragger.h</header>
+   <header>framelesswindow/windowdragger.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

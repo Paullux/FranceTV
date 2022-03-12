@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.5)
 
 
 if(WIN32)
-    project(FranceTV VERSION 0.1)
+    project(francetv VERSION 0.1)
 else()
-    project(FranceTV VERSION 0.1 LANGUAGES CXX)
+    project(francetv LANGUAGES CXX VERSION 0.1)
 endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -14,11 +14,25 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(APPLE)
+set(CMAKE_MACOSX_BUNDLE ON)
+endif()
 
-# set(CMAKE_PREFIX_PATH "C:\\Qt\\6.2.3\\msvc2019_64")
-set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64")
+if (UNIX)
+    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -O2")
+endif()
+
+if(WIN32)
+    # set(CMAKE_PREFIX_PATH "C:\\Qt\\6.2.3\\msvc2019_64")
+    set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64")
+elseif(UNIX AND NOT APPLE)
+    #set(CMAKE_PREFIX_PATH "/home/paul/Qt/5.15.2/gcc_64/lib/cmake")
+else()
+    set(CMAKE_PREFIX_PATH "/Users/paulw/Qt/5.15.2/clang_64")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9")
+endif()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
@@ -52,12 +66,13 @@ set(PROJECT_SOURCES
         DarkStyle.h
         darkstyle.qrc
         framelesswindow.qrc
-        qt5app.rc
+        FranceTV.rc
+        FranceTV.desktop
         ${TS_FILES}
 )
 
 if (WIN32)
-    qt5_add_resources(qt5app.rc)
+    qt5_add_resources(FranceTV.rc)
 endif()
 
 if(WIN32)
@@ -66,8 +81,8 @@ else()
     SET(GUI_TYPE )
 endif()
 
-set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/qt5app.rc")
-add_executable(qt5app main.cpp ${APP_ICON_RESOURCE_WINDOWS})
+#set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/FranceTV.rc")
+#add_executable(FranceTV main.cpp ${APP_ICON_RESOURCE_WINDOWS})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(FranceTV
@@ -82,9 +97,10 @@ else()
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(FranceTV
+        add_executable(FranceTV main.cpp
             ${GUI_TYPE}
             ${PROJECT_SOURCES}
+            ${APP_ICON_RESOURCE_WINDOWS}
         )
     endif()
 
@@ -106,4 +122,12 @@ set_target_properties(FranceTV PROPERTIES
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(FranceTV)
+endif()
+
+if (UNIX AND NOT APPLE)
+    install(TARGETS FranceTV
+            RUNTIME DESTINATION bin)
+    install(FILES FranceTV.desktop DESTINATION share/applications)
+    install(FILES images/france-tv.svg DESTINATION share/icons/hicolor/scalable/apps/)
+    install(FILES images/france-tv.png DESTINATION "share/icons/hicolor/256x256/apps/")
 endif()

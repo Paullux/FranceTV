@@ -1,0 +1,59 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+script: |
+  # remove any existent binaries
+  rm -rf AppDir | true
+
+  # compile and install binaries into AppDir
+  cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  make install DESTDIR=AppDir
+AppDir:
+  path: ./AppDir
+  app_info:
+    id: francetv
+    name: FranceTV
+    icon: france-tv
+    version: '0.10'
+    exec: usr/bin/FranceTV
+    exec_args: $@
+  runtime:
+    env:
+      # Disable webengine sandboxing
+      QTWEBENGINE_DISABLE_SANDBOX: 0
+  apt:
+    arch: amd64
+    allow_unauthenticated: true
+    sources:
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish main restricted
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish-updates main restricted
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish universe
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish-updates universe
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish multiverse
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish-updates multiverse
+      - sourceline: deb http://fr.archive.ubuntu.com/ubuntu/ impish-backports main
+          restricted universe multiverse
+      - sourceline: deb http://security.ubuntu.com/ubuntu impish-security main restricted
+      - sourceline: deb http://security.ubuntu.com/ubuntu impish-security universe
+      - sourceline: deb http://security.ubuntu.com/ubuntu impish-security multiverse
+    include:
+      - libqt5widgets5
+      - libqt5core5a
+      - libqt5gui5
+      - libqt5webview5
+      - libqt5webengine5
+      - libqt5webenginecore5
+      - libqt5webenginewidgets5
+      - libqt5network5
+    exclude: []
+  files:
+    include: []
+    exclude:
+      - usr/share/man
+      - usr/share/doc/*/README.*
+      - usr/share/doc/*/changelog.*
+      - usr/share/doc/*/NEWS.*
+      - usr/share/doc/*/TODO.*
+AppImage:
+  arch: x86_64
+  update-information: guess
+  sign-key: None

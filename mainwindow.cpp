@@ -7,10 +7,8 @@
 #include <QDir>
 #include <QWebEngineCookieStore>
 #include <QPushButton>
-#include <QDockWidget>
 #include <QWidget>
-#include <QGraphicsBlurEffect>
-
+#include <QWebEnginePage>
 /*
 frameless window class: it adds the MainWindow class inside the centralWidget
 */
@@ -146,12 +144,13 @@ MainWindow::MainWindow(QWidget *parent)
     QWebEngineProfile* defaultProfile = QWebEngineProfile::defaultProfile();
     defaultProfile->setCachePath(home + "/AppData/Roaming/FranceTV/cache/");
     defaultProfile->setPersistentStoragePath(home + "/AppData/Roaming/FranceTV/persistentstorage/");
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
 
     view = new QWebEngineView(this);
 
     settings = view->page()->settings();
-    settings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    settings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebEngineSettings::WebGLEnabled, true);
 
@@ -159,6 +158,12 @@ MainWindow::MainWindow(QWidget *parent)
     view->load(AccueilUrl);
     view->setZoomFactor(1.5);
     setCentralWidget(view);
+
+    // connect page signal with 'this' object slot
+    QObject::connect(view->page(),
+            &QWebEnginePage::featurePermissionRequested,
+            this,
+            &MainWindow::featurePermissionRequested);
 }
 
 MainWindow::~MainWindow()
@@ -166,18 +171,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::Quitter()
-{
-    qApp->quit();
-}
-
-void MainWindow::Accueil()
+void MainWindow::accueil()
 {
     view->load(AccueilUrl);
 }
+
 
 void MainWindow::changeZoomScaled(int value)
 {
     float f = value;
     view->setZoomFactor(f/10);
+}
+
+void MainWindow::featurePermissionRequested(const QUrl & securityOrigin, QWebEnginePage::Feature f) {
+    view->page()->setFeaturePermission(view->page()->url(), f,
+                                       QWebEnginePage::PermissionGrantedByUser);
 }

@@ -5,14 +5,19 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
-#include <QWidget>
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setWindowIcon(QIcon("./images/france-tv.ico"));
-    QtWebView::initialize();
 
+#ifdef __linux__
+    a.setWindowIcon(QIcon(":/images/france-tv.svg"));
+#elif _WIN32
+    a.setWindowIcon(QIcon("./images/france-tv.ico"));
+#elif __APPLE__
+    a.setWindowIcon(QIcon("./images/france-tv.icns"));
+#endif
     // style our application with custom dark style
     QApplication::setStyle(new DarkStyle);
 
@@ -22,6 +27,13 @@ int main(int argc, char *argv[])
     //framelessWindow.setWindowState(Qt::WindowFullScreen);
     //framelessWindow.setWindowTitle("test title");
     framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
+/**#ifdef __linux__
+    framelessWindow.setWindowIcon(QIcon(":/images/france-tv.svg"));
+#elif _WIN32
+    framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
+#elif __APPLE__
+    framelessWindow.setWindowIcon(QIcon("../images/france-tv.icns"));
+#endif**/
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -37,14 +49,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("https://github.com/Paullux/");
     QCoreApplication::setApplicationName("FranceTV");
 
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4");// --widevine-path=\"I:/FranceTV/cmake-build-release/widevinecdm.dll\"");
-    //qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--widevine-path=\"C:/Program Files/Google/Chrome/Application/99.0.4844.51/WidevineCdm/_platform_specific/win_x64/widevinecdm.dll\"");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4");// --enable-logging --log-level=3// --widevine-path=\"I:/FranceTV/cmake-build-release/widevinecdm.dll\"");
+    //qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4 --widevine-path='C:/Program Files/Google/Chrome/Application/99.0.4844.51/WidevineCdm/_platform_specific/win_x64/widevinecdm.dll'");
 
     // create our mainwindow instance
     MainWindow *w = new MainWindow;
 
-    QObject::connect(&framelessWindow, &FramelessWindow::Accueil, w, &MainWindow::Accueil);
-    QObject::connect(&framelessWindow, &FramelessWindow::SliderZoomValue, w, &MainWindow::changeZoomScaled);
+    QObject::connect(&framelessWindow, &FramelessWindow::accueil, w, &MainWindow::accueil);
+    QObject::connect(&framelessWindow, &FramelessWindow::sliderZoomValue, w, &MainWindow::changeZoomScaled);
 
     // add the mainwindow to our custom frameless window
     framelessWindow.setContent(w);

@@ -76,3 +76,13 @@ Thumbs.db
 cmake-build-debug/*
 
 cmake-build-release/*
+/Linux/CMakeFiles/
+/Linux/FranceTV_autogen/
+/Linux/cmake_install.cmake
+/Linux/CMakeCache.txt
+/Linux/Makefile
+/Linux/FranceTV
+/Linux/AppDir/
+/Linux/FranceTV-0.10-x86_64.AppImage
+/Linux/install_manifest.txt
+/Linux/appimage-builder-cache/
