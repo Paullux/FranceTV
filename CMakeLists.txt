@@ -96,12 +96,17 @@ else()
         add_library(FranceTV SHARED
             ${PROJECT_SOURCES}
         )
-    else()
-        add_executable(FranceTV main.cpp
+    elseif(WIN32)
+        add_executable(FranceTV
             ${GUI_TYPE}
             ${PROJECT_SOURCES}
             ${APP_ICON_RESOURCE_WINDOWS}
         )
+    else()
+        add_executable(FranceTV main.cpp
+                ${GUI_TYPE}
+                ${PROJECT_SOURCES}
+                )
     endif()
 
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
