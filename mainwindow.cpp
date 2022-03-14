@@ -143,8 +143,8 @@ MainWindow::MainWindow(QWidget *parent)
     QWebEngineProfile::defaultProfile()->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
     QWebEngineProfile* defaultProfile = QWebEngineProfile::defaultProfile();
 #ifdef __linux__
-    defaultProfile->setCachePath(home + ".FranceTV/cache/");
-    defaultProfile->setPersistentStoragePath(home + ".FranceTV/persistentstorage/");
+    defaultProfile->setCachePath(home + "/.FranceTV/cache/");
+    defaultProfile->setPersistentStoragePath(home + "/.FranceTV/persistentstorage/");
 #elif _WIN32
     defaultProfile->setCachePath(home + "/AppData/Roaming/FranceTV/cache/");
     defaultProfile->setPersistentStoragePath(home + "/AppData/Roaming/FranceTV/persistentstorage/");
