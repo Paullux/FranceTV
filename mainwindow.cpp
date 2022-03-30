@@ -1,14 +1,17 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include <QCoreApplication>
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
-#include <QDir>
-#include <QWebEngineCookieStore>
 #include <QPushButton>
 #include <QWidget>
 #include <QWebEnginePage>
+#include <QHttpPart>
+#include <QNetworkCookieJar>
+#include <QWebEngineView>
+#include <QStandardPaths>
+#include <QNetworkAccessManager>
+
 /*
 frameless window class: it adds the MainWindow class inside the centralWidget
 */
@@ -23,11 +26,11 @@ BorderlessMainWindow::BorderlessMainWindow(QWidget *parent) : QMainWindow(parent
 
     QVBoxLayout *verticalLayout = new QVBoxLayout();
     verticalLayout->setSpacing(0);
-    verticalLayout->setMargin(1);
+    verticalLayout->setContentsMargins(1, 1, 1, 1);
 
     QHBoxLayout *horizontalLayout = new QHBoxLayout();
     horizontalLayout->setSpacing(0);
-    horizontalLayout->setMargin(0);
+    horizontalLayout->setContentsMargins(0, 0, 0, 0);
 
     mTitlebarWidget = new QWidget(this);
     mTitlebarWidget->setObjectName("titlebarWidget");
@@ -138,41 +141,30 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     statusBar()->setSizeGripEnabled(true);
 
-    QString home=QDir::homePath();
+    QHttpPart* header = new QHttpPart;
+    header->setRawHeader("X-Frame-Options", "ALLOWALL");
 
-    QWebEngineProfile::defaultProfile()->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
-    QWebEngineProfile* defaultProfile = QWebEngineProfile::defaultProfile();
-#ifdef __linux__
-    defaultProfile->setCachePath(home + ".FranceTV/cache/");
-    defaultProfile->setPersistentStoragePath(home + ".FranceTV/persistentstorage/");
-#elif _WIN32
-    defaultProfile->setCachePath(home + "/AppData/Roaming/FranceTV/cache/");
-    defaultProfile->setPersistentStoragePath(home + "/AppData/Roaming/FranceTV/persistentstorage/");
-#elif __APPLE__
-    defaultProfile->setCachePath(home + "/Library/Application Support/FranceTV/cache/");
-    defaultProfile->setPersistentStoragePath(home + "/Library/Application Support/FranceTV/persistentstorage/");
-#endif
-    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    profile = new QWebEngineProfile(QString::fromLatin1("FranceTV.%1").arg(qWebEngineChromiumVersion()));  // unique profile store per qtwbengine version
+    page = new QWebEnginePage(profile); // page using profile
+    view = new QWebEngineView();
 
-    view = new QWebEngineView(this);
-
-    view->page()->profile()->setHttpUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.6 Chrome/87.0.4280.144 Safari/537.36");
-    settings = view->page()->settings();
+    settings = page->settings();
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebEngineSettings::WebGLEnabled, true);
 
-    //view->page()->profile()->setHttpUserAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
-    view->load(AccueilUrl);
-    view->setZoomFactor(1.5);
-    setCentralWidget(view);
-
     // connect page signal with 'this' object slot
-    QObject::connect(view->page(),
+    QObject::connect(page,
             &QWebEnginePage::featurePermissionRequested,
             this,
             &MainWindow::featurePermissionRequested);
+
+    view->setPage(page);
+    view->setUrl(AccueilUrl);
+    view->setZoomFactor(1.2);
+
+    setCentralWidget(view);
 }
 
 MainWindow::~MainWindow()
@@ -182,9 +174,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::accueil()
 {
-    view->load(AccueilUrl);
+    view->setUrl(AccueilUrl);
 }
-
 
 void MainWindow::changeZoomScaled(int value)
 {
@@ -193,6 +184,6 @@ void MainWindow::changeZoomScaled(int value)
 }
 
 void MainWindow::featurePermissionRequested(const QUrl & securityOrigin, QWebEnginePage::Feature f) {
-    view->page()->setFeaturePermission(view->page()->url(), f,
+    page->setFeaturePermission(page->url(), f,
                                        QWebEnginePage::PermissionGrantedByUser);
 }

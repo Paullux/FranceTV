@@ -15,6 +15,8 @@
 #include <QPainter>
 #include <QStyleOption>
 
+class DStyleOption;
+
 WindowDragger::WindowDragger(QWidget *parent) : QWidget(parent) {
   mousePressed = false;
 }
@@ -45,7 +47,8 @@ void WindowDragger::mouseReleaseEvent(QMouseEvent *event) {
 void WindowDragger::paintEvent(QPaintEvent *event) {
   Q_UNUSED(event);
   QStyleOption styleOption;
-  styleOption.init(this);
+  styleOption.initFrom(this);
+  //.init(this);
   QPainter painter(this);
   style()->drawPrimitive(QStyle::PE_Widget, &styleOption, &painter, this);
 }

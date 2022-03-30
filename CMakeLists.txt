@@ -25,8 +25,7 @@ if (UNIX)
 endif()
 
 if(WIN32)
-    # set(CMAKE_PREFIX_PATH "C:\\Qt\\6.2.3\\msvc2019_64")
-    set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64")
+    set(CMAKE_PREFIX_PATH "C:\\Qt\\6.2.4\\msvc2019_64")
 elseif(UNIX AND NOT APPLE)
     #set(CMAKE_PREFIX_PATH "/home/paul/Qt/5.15.2/gcc_64/lib/cmake")
 else()
@@ -47,8 +46,8 @@ endif()
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt5 COMPONENTS Widgets Core Svg Gui WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Svg Gui WebView WebEngineWidgets WebEngineCore Network LinguistTools REQUIRED)
+find_package(QT NAMES Qt6 COMPONENTS Widgets Core Svg Gui Widgets WebView WebEngineWidgets WebEngineCore WebEngineQuick Network LinguistTools REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Svg Gui Widgets WebView WebEngineWidgets WebEngineCore WebEngineQuick Network LinguistTools REQUIRED)
 
 set(TS_FILES FranceTV_fr_FR.ts)
 
@@ -71,11 +70,10 @@ set(PROJECT_SOURCES
         images/france-tv.ico
         images/france-tv.png
         images/france-tv.svg
-        ${TS_FILES}
 )
 
 if (WIN32)
-    qt5_add_resources(FranceTV.rc)
+    qt6_add_resources(FranceTV.rc)
 endif()
 
 if(WIN32)
@@ -83,9 +81,6 @@ if(WIN32)
 else()
     SET(GUI_TYPE )
 endif()
-
-#set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/FranceTV.rc")
-#add_executable(FranceTV main.cpp ${APP_ICON_RESOURCE_WINDOWS})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(FranceTV
@@ -115,12 +110,16 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::WebView)
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::WebEngineWidgets)
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::WebEngineCore)
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::Network)
-target_link_libraries(FranceTV PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(FranceTV PRIVATE Qt6::Core)
+target_link_libraries(FranceTV PRIVATE Qt6::Svg)
+target_link_libraries(FranceTV PRIVATE Qt6::Gui)
+target_link_libraries(FranceTV PRIVATE Qt6::Widgets)
+target_link_libraries(FranceTV PRIVATE Qt6::WebView)
+target_link_libraries(FranceTV PRIVATE Qt6::WebEngineWidgets)
+target_link_libraries(FranceTV PRIVATE Qt6::WebEngineCore)
+target_link_libraries(FranceTV PRIVATE Qt6::WebEngineQuick)
+target_link_libraries(FranceTV PRIVATE Qt6::Network)
+
 
 set_target_properties(FranceTV PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
@@ -128,15 +127,15 @@ set_target_properties(FranceTV PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
 )
 
-if(QT_VERSION_MAJOR EQUAL 6)
+#if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(FranceTV)
-endif()
+#endif()
 
 if (UNIX AND NOT APPLE)
     install(TARGETS FranceTV
             RUNTIME DESTINATION bin)
     install(FILES FranceTV.desktop DESTINATION share/applications)
-    install(FILES images/france-tv.svg DESTINATION share/icons/hicolor/scalable/apps/)
+    install(FILES images/france-tv.svg DESTINATION "share/icons/hicolor/scalable/apps/")
     install(FILES images/france-tv.png DESTINATION "share/icons/hicolor/256x256/apps/")
     install(FILES images/france-tv.ico DESTINATION "share/icons/hicolor/256x256/apps/")
 endif()

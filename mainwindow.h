@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QWebEngineView>
 #include <QtWebView>
@@ -10,6 +11,9 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QtWidgets>
+#include <QNetworkCookieJar>
+#include <QWebEngineCookieStore>
+#include <QWebEngineProfile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,15 +26,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QAction *actionAccueil;
-    QAction *actionQuitter;
     QUrl AccueilUrl = QUrl("https://www.france.tv/");
-    //QUrl AccueilUrl = QUrl("https://www.youtube.com/");
+
+    QWebEngineProfile *profile;
     QWebEngineView *view;
+    QWebEnginePage *page;
+
 
 private:
     Ui::MainWindow *ui;
     QWebEngineSettings *settings;
+
 
 public slots:
     void accueil();

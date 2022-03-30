@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QtWebEngineCore>
 
 
 int main(int argc, char *argv[])
@@ -45,12 +46,14 @@ int main(int argc, char *argv[])
         }
     }
 
-    QCoreApplication::setOrganizationName("Paul WOISARD");
+    QCoreApplication::setOrganizationName("Paul_WOISARD");
     QCoreApplication::setOrganizationDomain("https://github.com/Paullux/");
     QCoreApplication::setApplicationName("FranceTV");
 
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4");// --enable-logging --log-level=3// --widevine-path=\"I:/FranceTV/cmake-build-release/widevinecdm.dll\"");
-    //qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4 --widevine-path='C:/Program Files/Google/Chrome/Application/99.0.4844.51/WidevineCdm/_platform_specific/win_x64/widevinecdm.dll'");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=forceDarkModeEnabled=true,darkModeInversionAlgorithm=4 --proprietary-codecs --disable-logging");
+
+    QLoggingCategory::setFilterRules("*qt.webenginecontext=false\n"
+                                     "*js=false");
 
     // create our mainwindow instance
     MainWindow *w = new MainWindow;
