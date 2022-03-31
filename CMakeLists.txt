@@ -72,9 +72,9 @@ set(PROJECT_SOURCES
         images/france-tv.svg
 )
 
-if (WIN32)
-    qt6_add_resources(FranceTV.rc)
-endif()
+#if (WIN32)
+#    qt6_add_resources(FranceTV.rc)
+#endif()
 
 if(WIN32)
     SET(GUI_TYPE WIN32)
@@ -82,14 +82,14 @@ else()
     SET(GUI_TYPE )
 endif()
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(FranceTV
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
+#if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+#    qt_add_executable(FranceTV
+#        MANUAL_FINALIZATION
+#        ${PROJECT_SOURCES}
+#    )
 
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
+#    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+#else()
     if(ANDROID)
         add_library(FranceTV SHARED
             ${PROJECT_SOURCES}
@@ -107,8 +107,8 @@ else()
                 )
     endif()
 
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()
+#    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+#endif()
 
 target_link_libraries(FranceTV PRIVATE Qt6::Core)
 target_link_libraries(FranceTV PRIVATE Qt6::Svg)
@@ -120,12 +120,13 @@ target_link_libraries(FranceTV PRIVATE Qt6::WebEngineCore)
 target_link_libraries(FranceTV PRIVATE Qt6::WebEngineQuick)
 target_link_libraries(FranceTV PRIVATE Qt6::Network)
 
-
-set_target_properties(FranceTV PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-)
+if(APPLE)
+    set_target_properties(FranceTV PROPERTIES
+        MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    )
+endif()
 
 #if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(FranceTV)
