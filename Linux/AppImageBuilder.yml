@@ -20,6 +20,7 @@ AppDir:
     env:
       # Disable webengine sandboxing
       QTWEBENGINE_DISABLE_SANDBOX: 0
+      QT_QPA_PLATFORM: xcb
   apt:
     arch: amd64
     allow_unauthenticated: true
@@ -52,6 +53,11 @@ AppDir:
       - libqt6webenginequick6
       - libqt6network6
       - qt6-base-dev
+      - libqt6waylandclient6
+      - libqt6waylandcompositor6
+      - libqt6waylandeglclienthwintegration6
+      - libqt6waylandeglcompositorhwintegration6
+      - qt6-wayland
     exclude: []
   files:
     include: []
