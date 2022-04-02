@@ -145,11 +145,6 @@ MainWindow::MainWindow(QWidget *parent)
     QHttpPart* header = new QHttpPart;
     header->setRawHeader("X-Frame-Options", "ALLOWALL");
 
-    qDebug() << "DataPath : " << QLibraryInfo::location(QLibraryInfo::DataPath);
-    qDebug() << "TranslationsPath : " << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-
-    qDebug() << "qtconfPath : " << QCoreApplication::applicationDirPath() + QDir::separator() + "qt6.conf";
-
     profile = new QWebEngineProfile(QString::fromLatin1("FranceTV.%1").arg(qWebEngineChromiumVersion()));  // unique profile store per qtwbengine version
 
     page = new QWebEnginePage(profile); // page using profile
