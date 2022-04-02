@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+//#include "./ui_mainwindow.h"
 
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
@@ -11,6 +11,7 @@
 #include <QWebEngineView>
 #include <QStandardPaths>
 #include <QNetworkAccessManager>
+#include <QLibraryInfo>
 
 /*
 frameless window class: it adds the MainWindow class inside the centralWidget
@@ -144,7 +145,13 @@ MainWindow::MainWindow(QWidget *parent)
     QHttpPart* header = new QHttpPart;
     header->setRawHeader("X-Frame-Options", "ALLOWALL");
 
+    qDebug() << "DataPath : " << QLibraryInfo::location(QLibraryInfo::DataPath);
+    qDebug() << "TranslationsPath : " << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+
+    qDebug() << "qtconfPath : " << QCoreApplication::applicationDirPath() + QDir::separator() + "qt6.conf";
+
     profile = new QWebEngineProfile(QString::fromLatin1("FranceTV.%1").arg(qWebEngineChromiumVersion()));  // unique profile store per qtwbengine version
+
     page = new QWebEnginePage(profile); // page using profile
     view = new QWebEngineView();
 

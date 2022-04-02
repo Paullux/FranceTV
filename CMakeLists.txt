@@ -46,8 +46,8 @@ endif()
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 COMPONENTS Widgets Core Svg Gui Widgets WebView WebEngineWidgets WebEngineCore WebEngineQuick Network LinguistTools REQUIRED)
-find_package(Qt6 COMPONENTS Widgets Core Svg Gui Widgets WebView WebEngineWidgets WebEngineCore WebEngineQuick Network LinguistTools REQUIRED)
+find_package(QT NAMES Qt6 COMPONENTS Widgets Core Svg Gui WebView WebEngineWidgets WebEngineCore WebEngineQuick Network REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Svg Gui WebView WebEngineWidgets WebEngineCore WebEngineQuick Network REQUIRED)
 
 set(TS_FILES FranceTV_fr_FR.ts)
 
@@ -70,7 +70,8 @@ set(PROJECT_SOURCES
         images/france-tv.ico
         images/france-tv.png
         images/france-tv.svg
-)
+        qt6.conf
+        )
 
 #if (WIN32)
 #    qt6_add_resources(FranceTV.rc)
@@ -135,7 +136,8 @@ endif()
 if (UNIX AND NOT APPLE)
     install(TARGETS FranceTV
             RUNTIME DESTINATION bin)
-    install(FILES FranceTV.desktop DESTINATION share/applications)
+    install(FILES qt6.conf DESTINATION "bin/")
+    install(FILES FranceTV.desktop DESTINATION "share/applications")
     install(FILES images/france-tv.svg DESTINATION "share/icons/hicolor/scalable/apps/")
     install(FILES images/france-tv.png DESTINATION "share/icons/hicolor/256x256/apps/")
     install(FILES images/france-tv.ico DESTINATION "share/icons/hicolor/256x256/apps/")
