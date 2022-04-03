@@ -21,6 +21,7 @@ AppDir:
       # Disable webengine sandboxing
       QTWEBENGINE_DISABLE_SANDBOX: 0
       QT_QPA_PLATFORM: xcb
+      QT_PLUGIN_PATH: $APPDIR/usr/lib/x86_64-linux-gnu/qt6/plugins
   apt:
     arch: amd64
     allow_unauthenticated: true
