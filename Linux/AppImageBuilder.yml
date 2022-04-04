@@ -7,6 +7,20 @@ script: |
   # compile and install binaries into AppDir
   cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   make install DESTDIR=AppDir
+  
+  # link plugins
+    mkdir -p $APPDIR/usr/lib/x86_64-linux-gnu/qt6/plugins
+  mkdir -p $APPDIR/usr/bin
+  cd AppDir/usr/bin
+  ln -s ../../usr/lib/x86_64-linux-gnu/qt6/plugins .
+  cd ../..
+  
+  # link ressource and translations
+  mkdir -p $APPDIR/usr/share/qt6/resources
+  mkdir -p $APPDIR/usr/share/qt6/translations
+  ln -s usr/share/qt6/resources .
+  ln -s usr/share/qt6/translations .
+  cd ..
 AppDir:
   path: ./AppDir
   app_info:
@@ -20,8 +34,6 @@ AppDir:
     env:
       # Disable webengine sandboxing
       QTWEBENGINE_DISABLE_SANDBOX: 0
-      QT_QPA_PLATFORM: xcb
-      QT_PLUGIN_PATH: $APPDIR/usr/lib/x86_64-linux-gnu/qt6/plugins
   apt:
     arch: amd64
     allow_unauthenticated: true
@@ -38,6 +50,23 @@ AppDir:
       - sourceline: deb http://security.ubuntu.com/ubuntu jammy-security universe
       - sourceline: deb http://security.ubuntu.com/ubuntu jammy-security multiverse
     include:
+      - libxkbcommon0
+      - libxkbcommon-x11-0
+      - libxcb-icccm4
+      - libxcb-xkb1
+      - libxcb-render-util0
+      - libxcb-randr0
+      - libxcb-keysyms1
+      - libxcb-xinerama0
+      - libxcb-image0
+      - libxcb-util1
+      - libxinerama1
+      - kwayland-data
+      - kwin-wayland-backend-drm
+      - kwin-wayland-backend-fbdev
+      - kwin-wayland-backend-virtual
+      - kwin-wayland-backend-wayland 
+      - kwin-wayland-backend-x11
       - libqt6webengine6-data
       - libqt6widgets6
       - libqt6core6
