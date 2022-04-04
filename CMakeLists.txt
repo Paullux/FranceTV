@@ -73,9 +73,9 @@ set(PROJECT_SOURCES
         qt6.conf
         )
 
-#if (WIN32)
-#    qt6_add_resources(FranceTV.rc)
-#endif()
+if (WIN32)
+    qt6_add_resources(FranceTV.rc)
+endif()
 
 if(WIN32)
     SET(GUI_TYPE WIN32)

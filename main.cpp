@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 #ifdef __linux__
     framelessWindow.setWindowIcon(QIcon(":/images/france-tv.ico"));
 #elif _WIN32
-    framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
+    framelessWindow.setWindowIcon(QIcon("./france-tv.ico"));
 #elif __APPLE__
     framelessWindow.setWindowIcon(QIcon("../images/france-tv.icns"));
 #endif
