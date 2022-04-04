@@ -149,7 +149,7 @@
   color:rgb(153,153,153); background-color:#121212;</string>
            </property>
            <property name="text">
-            <string>Application France.TV</string>
+            <string>Application france-tv</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

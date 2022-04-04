@@ -4,5 +4,5 @@ Type=Application
 Name=FranceTV
 Comment=FranceTV.
 Exec=francetv
-Icon=france-tv
+Icon=france-tv-2
 Categories=Video;

@@ -1,4 +1,4 @@
-# FranceTV
+# france-tv
 
 ![france-tv](./images/france-tv-white.svg)
 

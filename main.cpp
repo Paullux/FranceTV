@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 #elif _WIN32
     framelessWindow.setWindowIcon(QIcon("./france-tv-2.ico"));
 #elif __APPLE__
-    framelessWindow.setWindowIcon(QIcon("../images/france-tv-2.icns"));
+    framelessWindow.setWindowIcon(QIcon(":/images/france-tv-2.icns"));
 #endif
 
     QTranslator translator;

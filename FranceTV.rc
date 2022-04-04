@@ -1,2 +1,2 @@
 #include <windows.h>
-IDI_ICON1 ICON "images/france-tv.ico"
+IDI_ICON1 ICON "images/france-tv-2.ico"
