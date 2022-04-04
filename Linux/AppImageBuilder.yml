@@ -27,7 +27,7 @@ AppDir:
     id: francetv
     name: FranceTV
     icon: france-tv-2
-    version: '1.0'
+    version: '1.1'
     exec: usr/bin/FranceTV
     exec_args: $@
   runtime:
