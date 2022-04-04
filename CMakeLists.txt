@@ -70,6 +70,9 @@ set(PROJECT_SOURCES
         images/france-tv.ico
         images/france-tv.png
         images/france-tv.svg
+        images/france-tv-2.ico
+        images/france-tv-2.png
+        images/france-tv-2.svg
         qt6.conf
         )
 

@@ -13,11 +13,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 #ifdef __linux__
-    a.setWindowIcon(QIcon(":/images/france-tv.svg"));
+    a.setWindowIcon(QIcon(":/images/france-tv-2.svg"));
 #elif _WIN32
-    a.setWindowIcon(QIcon("./images/france-tv.ico"));
+    a.setWindowIcon(QIcon("./images/france-tv-2.ico"));
 #elif __APPLE__
-    a.setWindowIcon(QIcon("./images/france-tv.icns"));
+    a.setWindowIcon(QIcon("./images/france-tv-2.icns"));
 #endif
     // style our application with custom dark style
     QApplication::setStyle(new DarkStyle);
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
     //framelessWindow.setWindowTitle("test title");
     //framelessWindow.setWindowIcon(QIcon("../images/france-tv.ico"));
 #ifdef __linux__
-    framelessWindow.setWindowIcon(QIcon(":/images/france-tv.ico"));
+    framelessWindow.setWindowIcon(QIcon(":/images/france-tv-2.ico"));
 #elif _WIN32
-    framelessWindow.setWindowIcon(QIcon("./france-tv.ico"));
+    framelessWindow.setWindowIcon(QIcon("./france-tv-2.ico"));
 #elif __APPLE__
-    framelessWindow.setWindowIcon(QIcon("../images/france-tv.icns"));
+    framelessWindow.setWindowIcon(QIcon("../images/france-tv-2.icns"));
 #endif
 
     QTranslator translator;

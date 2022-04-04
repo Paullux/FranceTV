@@ -7,6 +7,9 @@
         <file>images/france-tv.svg</file>
         <file>images/france-tv.png</file>
         <file>images/france-tv.ico</file>
+        <file>images/france-tv-2.svg</file>
+        <file>images/france-tv-2.png</file>
+        <file>images/france-tv-2.ico</file>
         <file>FranceTV.desktop</file>
     </qresource>
 </RCC>
